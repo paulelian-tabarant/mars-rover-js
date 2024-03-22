@@ -1,12 +1,18 @@
+const NORTH = 'N';
+const EAST = 'E';
+const SOUTH = 'S';
+const WEST = 'W';
+
 export class MarsRover {
     move(commands) {
-        let direction = 'N'
+        let direction = NORTH
 
         for (const command of commands) {
             if (command === 'L') {
-                direction = 'W'
+                direction = WEST
                 continue
             }
+
             direction = this.nextDirectionFrom(direction);
         }
 
@@ -14,17 +20,17 @@ export class MarsRover {
     }
 
     nextDirectionFrom(direction) {
-        if (direction === 'N') {
-            return 'E'
+        if (direction === NORTH) {
+            return EAST
         }
-        if (direction === 'E') {
-            return 'S'
+        if (direction === EAST) {
+            return SOUTH
         }
-        if (direction === 'S') {
-            return 'W'
+        if (direction === SOUTH) {
+            return WEST
         }
-        if (direction === 'W') {
-            return 'N'
+        if (direction === WEST) {
+            return NORTH
         }
     }
 }
