@@ -15,14 +15,16 @@ describe('Mars Rover', () => {
     })
 
     describe.each([
-        {command: 'R', expectedOrientation: 'E'},
-        {command: 'RR', expectedOrientation: 'S'},
-    ])('turn', ({command, expectedOrientation}) => {
+        {commands: 'R', expectedOrientation: 'E'},
+        {commands: 'RR', expectedOrientation: 'S'},
+        {commands: 'RRR', expectedOrientation: 'W'},
+        {commands: 'RRRR', expectedOrientation: 'N'},
+    ])('turn', ({commands, expectedOrientation}) => {
 
-        it(`faces ${expectedOrientation} when turning ${command}`, () => {
+        it(`faces ${expectedOrientation} when turning ${commands}`, () => {
             const rover = new MarsRover();
 
-            const orientation = orientationFrom(rover.move(command))
+            const orientation = orientationFrom(rover.move(commands))
 
             expect(orientation).toEqual(expectedOrientation)
         })
