@@ -20,6 +20,9 @@ describe('Mars Rover', () => {
         {commands: 'RRR', expectedOrientation: 'W'},
         {commands: 'RRRR', expectedOrientation: 'N'},
         {commands: 'L', expectedOrientation: 'W'},
+        {commands: 'LL', expectedOrientation: 'S'},
+        {commands: 'LLL', expectedOrientation: 'E'},
+        {commands: 'LLLL', expectedOrientation: 'N'},
     ])('turn', ({commands, expectedOrientation}) => {
 
         it(`faces ${expectedOrientation} when turning ${commands}`, () => {
