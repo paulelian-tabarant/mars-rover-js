@@ -3,6 +3,10 @@ export class MarsRover {
         let direction = 'N'
 
         for (const command of commands) {
+            if (command === 'L') {
+                direction = 'W'
+                continue
+            }
             direction = this.nextDirectionFrom(direction);
         }
 
