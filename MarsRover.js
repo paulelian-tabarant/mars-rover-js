@@ -3,12 +3,14 @@ const EAST = 'E';
 const SOUTH = 'S';
 const WEST = 'W';
 
+const TURN_LEFT = 'L';
+
 export class MarsRover {
     move(commands) {
         let direction = NORTH
 
         for (const command of commands) {
-            if (command === 'L') {
+            if (command === TURN_LEFT) {
                 direction = this.turnLeft(direction)
                 continue
             }
@@ -34,17 +36,17 @@ export class MarsRover {
         }
     }
 
-    turnRight(direction) {
-        if (direction === NORTH) {
+    turnRight(currentDirection) {
+        if (currentDirection === NORTH) {
             return EAST
         }
-        if (direction === EAST) {
+        if (currentDirection === EAST) {
             return SOUTH
         }
-        if (direction === SOUTH) {
+        if (currentDirection === SOUTH) {
             return WEST
         }
-        if (direction === WEST) {
+        if (currentDirection === WEST) {
             return NORTH
         }
     }
