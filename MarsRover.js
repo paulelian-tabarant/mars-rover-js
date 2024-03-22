@@ -13,13 +13,13 @@ export class MarsRover {
                 continue
             }
 
-            direction = this.nextDirectionFrom(direction);
+            direction = this.turnRight(direction);
         }
 
         return '0,0,' + direction;
     }
 
-    nextDirectionFrom(direction) {
+    turnRight(direction) {
         if (direction === NORTH) {
             return EAST
         }
