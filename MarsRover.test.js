@@ -9,4 +9,10 @@ describe('Mars Rover', () => {
 
         expect(rover.move(NO_MOVE)).toEqual('0,0,N')
     })
+
+    it('faces the right direction when turning', () => {
+        const rover = new MarsRover();
+
+        expect(rover.move('R')).toEqual('0,0,E')
+    })
 });
