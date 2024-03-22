@@ -1,8 +1,15 @@
 export class MarsRover {
     move(commands) {
-        if (commands === 'R') {
-            return '0,0,E';
+        let direction = 'N'
+        for (const command of commands) {
+            if (direction === 'N') {
+                direction = 'E'
+            }
+            else if (direction === 'E') {
+                direction = 'S'
+            }
         }
-        return '0,0,N';
+
+        return '0,0,' + direction;
     }
 }
