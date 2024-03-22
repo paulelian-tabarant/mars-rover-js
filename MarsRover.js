@@ -1,6 +1,7 @@
 export class MarsRover {
     move(commands) {
         let direction = 'N'
+
         for (const command of commands) {
             direction = this.nextDirectionFrom(direction);
         }
@@ -10,14 +11,16 @@ export class MarsRover {
 
     nextDirectionFrom(direction) {
         if (direction === 'N') {
-            direction = 'E'
-        } else if (direction === 'E') {
-            direction = 'S'
-        } else if (direction === 'S') {
-            direction = 'W'
-        } else if (direction === 'W') {
-            direction = 'N'
+            return 'E'
         }
-        return direction;
+        if (direction === 'E') {
+            return 'S'
+        }
+        if (direction === 'S') {
+            return 'W'
+        }
+        if (direction === 'W') {
+            return 'N'
+        }
     }
 }
