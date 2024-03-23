@@ -10,7 +10,7 @@ export class MarsRover {
     #TURN_LEFT = 'L'
     #MOVE = 'M'
 
-    interpret(commands) {
+    receive(commands) {
         let direction = this.#NORTH
 
         let location = new Location(0, 0)
