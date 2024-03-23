@@ -19,17 +19,18 @@ describe('Mars Rover', () => {
     })
 
     describe.each([
-        {commands: 'R', expectedOrientation: 'E'},
-        {commands: 'RR', expectedOrientation: 'S'},
-        {commands: 'RRR', expectedOrientation: 'W'},
-        {commands: 'RRRR', expectedOrientation: 'N'},
-        {commands: 'L', expectedOrientation: 'W'},
-        {commands: 'LL', expectedOrientation: 'S'},
-        {commands: 'LLL', expectedOrientation: 'E'},
-        {commands: 'LLLL', expectedOrientation: 'N'},
-    ])('turns correctly left and right', ({commands, expectedOrientation}) => {
+            {commands: 'R', expectedOrientation: 'E'},
+            {commands: 'RR', expectedOrientation: 'S'},
+            {commands: 'RRR', expectedOrientation: 'W'},
+            {commands: 'RRRR', expectedOrientation: 'N'},
+            {commands: 'L', expectedOrientation: 'W'},
+            {commands: 'LL', expectedOrientation: 'S'},
+            {commands: 'LLL', expectedOrientation: 'E'},
+            {commands: 'LLLL', expectedOrientation: 'N'},
+        ],
+    )('turns correctly left and right', ({commands, expectedOrientation}) => {
 
-        it(`faces ${expectedOrientation} when turning ${commands}`, () => {
+        it(`faces ${expectedOrientation} when receiving ${commands}`, () => {
             const rover = new MarsRover();
 
             const orientation = orientationFrom(rover.interpret(commands))
@@ -38,23 +39,28 @@ describe('Mars Rover', () => {
         })
     })
 
-    it(`remembers last location when doing several moves`, () => {
-        const rover = new MarsRover();
+    describe.each([
+            {commands: 'MMM', expectedLocation: '0,3'},
+            {commands: 'RMMM', expectedLocation: '3,0'},
+        ],
+    )('remembers the last location when moving forward several times', ({commands, expectedLocation}) => {
+        it(`is at ${expectedLocation} when receiving ${commands}`, () => {
+            const rover = new MarsRover();
 
-        const location = locationFrom(rover.interpret('MMM'))
+            const location = locationFrom(rover.interpret(commands))
 
-        expect(location).toEqual('0,3')
+            expect(location).toEqual(expectedLocation)
+        });
     });
 
     describe.each([
             {commands: 'M', expectedLocation: '0,1'},
             {commands: 'MRRM', expectedLocation: '0,0'},
             {commands: 'RM', expectedLocation: '1,0'},
-            {commands: 'RMMM', expectedLocation: '3,0'},
             {commands: 'RMLLM', expectedLocation: '0,0'},
         ],
-    )('moves in the correct direction', ({commands, expectedLocation}) => {
-        it(`is at ${expectedLocation} when moving ${commands}`, () => {
+    )('considers current direction when moving forward', ({commands, expectedLocation}) => {
+        it(`is at ${expectedLocation} when receiving ${commands}`, () => {
             const rover = new MarsRover();
 
             const location = locationFrom(rover.interpret(commands))
