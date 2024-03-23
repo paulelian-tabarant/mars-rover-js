@@ -1,59 +1,62 @@
-const NORTH = 'N';
-const EAST = 'E';
-const SOUTH = 'S';
-const WEST = 'W';
-
-const TURN_LEFT = 'L';
-const MOVE = 'M';
-
 export class MarsRover {
+    NORTH = 'N';
+    EAST = 'E';
+    SOUTH = 'S';
+    WEST = 'W';
+
+    TURN_RIGHT = 'R'
+    TURN_LEFT = 'L'
+    MOVE = 'M'
+
     move(commands) {
-        let direction = NORTH
-        let height = 0
+        let direction = this.NORTH
+        let side = 0
+
         for (const command of commands) {
-            if (command === 'M') {
-                height++
-                //return '0,1' + direction
+            if (command === this.MOVE) {
+                side++
             }
 
-            if (command === TURN_LEFT) {
+            if (command === this.TURN_LEFT) {
                 direction = this.turnLeft(direction)
                 continue
             }
 
-            direction = this.turnRight(direction);
+            if (command === this.TURN_RIGHT) {
+                direction = this.turnRight(direction);
+            }
         }
 
-        return '0,' + height + ',' + direction;
+        return '0,' + side + ',' + direction;
     }
 
     turnLeft(currentDirection) {
-        if (currentDirection === NORTH) {
-            return WEST
+        if (currentDirection === this.NORTH) {
+            return this.WEST
         }
-        if (currentDirection === WEST) {
-            return SOUTH
+        if (currentDirection === this.WEST) {
+            return this.SOUTH
         }
-        if (currentDirection === SOUTH) {
-            return EAST
+        if (currentDirection === this.SOUTH) {
+            return this.EAST
         }
-        if (currentDirection === EAST) {
-            return NORTH
+        if (currentDirection === this.EAST) {
+            return this.NORTH
         }
     }
 
     turnRight(currentDirection) {
-        if (currentDirection === NORTH) {
-            return EAST
+        if (currentDirection === this.NORTH) {
+            return this.EAST
         }
-        if (currentDirection === EAST) {
-            return SOUTH
+        if (currentDirection === this.EAST) {
+            return this.SOUTH
         }
-        if (currentDirection === SOUTH) {
-            return WEST
+        if (currentDirection === this.SOUTH) {
+            return this.WEST
         }
-        if (currentDirection === WEST) {
-            return NORTH
+        if (currentDirection === this.WEST) {
+            return this.NORTH
         }
     }
 }
