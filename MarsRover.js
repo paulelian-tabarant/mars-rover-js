@@ -10,13 +10,14 @@ export class MarsRover {
 
     move(commands) {
         let direction = this.NORTH
+
         let length = 0
         let side = 0
 
         for (const command of commands) {
             if (command === this.MOVE) {
                 if (direction === this.EAST) {
-                    length = 1
+                    length++
                     continue
                 }
                 if (direction === this.SOUTH) {
