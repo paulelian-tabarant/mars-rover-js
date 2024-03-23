@@ -5,6 +5,10 @@ function orientationFrom(position) {
     return position.charAt(position.length - 1);
 }
 
+function locationFrom(position) {
+    return position.substring(0, 3);
+}
+
 describe('Mars Rover', () => {
     it('is at 0,0,N by default', () => {
         const NO_MOVE = '';
@@ -40,7 +44,7 @@ describe('Mars Rover', () => {
         it(`is at expected location when moving ${commands}`, () => {
             const rover = new MarsRover();
 
-            const location = rover.move(commands).substring(0, 3)
+            const location = locationFrom(rover.move(commands))
 
             expect(location).toEqual(expectedLocation)
         });
