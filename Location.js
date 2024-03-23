@@ -7,11 +7,19 @@ export class Location {
         this.side = side
     }
 
-    translateOnSide(delta) {
-        return new Location(this.length, this.side + delta)
+    down() {
+        return new Location(this.length, this.side - 1)
     }
 
-    translateOnLength(delta) {
-        return new Location(this.length + delta, this.side)
+    up() {
+        return new Location(this.length, this.side + 1)
+    }
+
+    left() {
+        return new Location(this.length - 1, this.side)
+    }
+
+    right() {
+        return new Location(this.length + 1, this.side)
     }
 }
