@@ -4,14 +4,16 @@ const SOUTH = 'S';
 const WEST = 'W';
 
 const TURN_LEFT = 'L';
+const MOVE = 'M';
 
 export class MarsRover {
     move(commands) {
         let direction = NORTH
-
+        let height = 0
         for (const command of commands) {
             if (command === 'M') {
-                return '0,1' + direction
+                height++
+                //return '0,1' + direction
             }
 
             if (command === TURN_LEFT) {
@@ -22,7 +24,7 @@ export class MarsRover {
             direction = this.turnRight(direction);
         }
 
-        return '0,0,' + direction;
+        return '0,' + height + ',' + direction;
     }
 
     turnLeft(currentDirection) {
