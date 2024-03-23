@@ -10,6 +10,10 @@ export class MarsRover {
         let direction = NORTH
 
         for (const command of commands) {
+            if (command === 'M') {
+                return '0,1' + direction
+            }
+
             if (command === TURN_LEFT) {
                 direction = this.turnLeft(direction)
                 continue

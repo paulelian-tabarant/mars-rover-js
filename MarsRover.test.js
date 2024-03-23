@@ -23,7 +23,7 @@ describe('Mars Rover', () => {
         {commands: 'LL', expectedOrientation: 'S'},
         {commands: 'LLL', expectedOrientation: 'E'},
         {commands: 'LLLL', expectedOrientation: 'N'},
-    ])('turn', ({commands, expectedOrientation}) => {
+    ])('turns correctly left and right', ({commands, expectedOrientation}) => {
 
         it(`faces ${expectedOrientation} when turning ${commands}`, () => {
             const rover = new MarsRover();
@@ -33,4 +33,16 @@ describe('Mars Rover', () => {
             expect(orientation).toEqual(expectedOrientation)
         })
     })
+
+    describe.each(
+        [{commands: 'M', expectedLocation: '0,1'}]
+    )('moves correctly according to current direction', ({commands, expectedLocation}) => {
+        it(`is at expected location when moving ${commands}`, () => {
+            const rover = new MarsRover();
+
+            const location = rover.move(commands).substring(0, 3)
+
+            expect(location).toEqual(expectedLocation)
+        });
+    });
 });
