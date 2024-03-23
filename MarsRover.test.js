@@ -49,6 +49,7 @@ describe('Mars Rover', () => {
     describe.each([
             {commands: 'M', expectedLocation: '0,1'},
             {commands: 'MRRM', expectedLocation: '0,0'},
+            {commands: 'RM', expectedLocation: '1,0'},
         ],
     )('moves in the correct direction', ({commands, expectedLocation}) => {
         it(`is at ${expectedLocation} when moving ${commands}`, () => {
