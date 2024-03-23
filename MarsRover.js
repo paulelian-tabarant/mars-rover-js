@@ -25,9 +25,7 @@ export class MarsRover {
 /*
                 if (direction === this.SOUTH) {
                     side--
-                    continue
-                }
-                if (direction === this.NORTH) {
+                } else {
                     side++
                 }
 */
