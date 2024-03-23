@@ -8,10 +8,10 @@ export class MarsRover {
     TURN_LEFT = 'L'
     MOVE = 'M'
 
-    move(commands) {
+    interpret(commands) {
         let direction = this.NORTH
 
-        const position = {
+        let location = {
             length: 0,
             side: 0
         }
@@ -19,14 +19,14 @@ export class MarsRover {
         for (const command of commands) {
             if (command === this.MOVE) {
                 if (direction === this.EAST) {
-                    position.length++
+                    location.length++
                     continue
                 }
 
                 if (direction === this.SOUTH) {
-                    position.side--
+                    location.side--
                 } else {
-                    position.side++
+                    location.side++
                 }
             }
 
@@ -40,7 +40,7 @@ export class MarsRover {
             }
         }
 
-        return position.length + ',' + position.side + ',' + direction;
+        return location.length + ',' + location.side + ',' + direction;
     }
 
     turnLeft(currentDirection) {

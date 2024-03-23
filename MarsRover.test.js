@@ -15,7 +15,7 @@ describe('Mars Rover', () => {
 
         const rover = new MarsRover();
 
-        expect(rover.move(NO_MOVE)).toEqual('0,0,N')
+        expect(rover.interpret(NO_MOVE)).toEqual('0,0,N')
     })
 
     describe.each([
@@ -32,7 +32,7 @@ describe('Mars Rover', () => {
         it(`faces ${expectedOrientation} when turning ${commands}`, () => {
             const rover = new MarsRover();
 
-            const orientation = orientationFrom(rover.move(commands))
+            const orientation = orientationFrom(rover.interpret(commands))
 
             expect(orientation).toEqual(expectedOrientation)
         })
@@ -41,7 +41,7 @@ describe('Mars Rover', () => {
     it(`remembers last location when doing several moves`, () => {
         const rover = new MarsRover();
 
-        const location = locationFrom(rover.move('MMM'))
+        const location = locationFrom(rover.interpret('MMM'))
 
         expect(location).toEqual('0,3')
     });
@@ -56,7 +56,7 @@ describe('Mars Rover', () => {
         it(`is at ${expectedLocation} when moving ${commands}`, () => {
             const rover = new MarsRover();
 
-            const location = locationFrom(rover.move(commands))
+            const location = locationFrom(rover.interpret(commands))
 
             expect(location).toEqual(expectedLocation)
         });
