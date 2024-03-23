@@ -38,11 +38,19 @@ describe('Mars Rover', () => {
         })
     })
 
+    it(`remembers last location when doing several moves`, () => {
+        const rover = new MarsRover();
+
+        const location = locationFrom(rover.move('MMM'))
+
+        expect(location).toEqual('0,3')
+    });
+
     describe.each([
             {commands: 'M', expectedLocation: '0,1'},
-            {commands: 'MM', expectedLocation: '0,2'}
+            {commands: 'MRRM', expectedLocation: '0,0'},
         ],
-    )('remembers last location when moving front', ({commands, expectedLocation}) => {
+    )('moves in the correct direction', ({commands, expectedLocation}) => {
         it(`is at ${expectedLocation} when moving ${commands}`, () => {
             const rover = new MarsRover();
 

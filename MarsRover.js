@@ -14,7 +14,11 @@ export class MarsRover {
 
         for (const command of commands) {
             if (command === this.MOVE) {
-                side++
+                if (direction === this.SOUTH) {
+                    side--
+                } else {
+                    side++
+                }
             }
 
             if (command === this.TURN_LEFT) {
