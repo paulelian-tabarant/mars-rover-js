@@ -20,6 +20,9 @@ export class MarsRover {
                     length++
                     continue
                 }
+
+                side = this.moveOnSide(side, direction)
+/*
                 if (direction === this.SOUTH) {
                     side--
                     continue
@@ -27,6 +30,7 @@ export class MarsRover {
                 if (direction === this.NORTH) {
                     side++
                 }
+*/
             }
 
             if (command === this.TURN_LEFT) {
@@ -69,6 +73,15 @@ export class MarsRover {
         }
         if (currentDirection === this.WEST) {
             return this.NORTH
+        }
+    }
+
+    moveOnSide(side, direction) {
+        if (direction === this.SOUTH) {
+            return side - 1
+        }
+        if (direction === this.NORTH) {
+            return side + 1
         }
     }
 }
