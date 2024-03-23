@@ -65,22 +65,13 @@ export class MarsRover {
 
     move(location, direction) {
         if (direction === this.#EAST) {
-            return new Location(
-                location.length + 1,
-                location.side
-            )
+            return location.translateOnLength(+1)
         }
 
         if (direction === this.#SOUTH) {
-            return new Location(
-                location.length,
-                location.side - 1
-            )
+            return location.translateOnSide(-1)
         } else {
-            return new Location(
-                location.length,
-                location.side + 1
-            )
+            return location.translateOnSide(+1)
         }
     }
 }
