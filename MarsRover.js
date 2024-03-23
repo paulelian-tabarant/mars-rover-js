@@ -17,23 +17,23 @@ export class MarsRover {
 
         for (const command of commands) {
             if (command === this.#MOVE) {
-                location = this.move(location, direction)
+                location = this.#move(location, direction)
             }
 
             if (command === this.#TURN_LEFT) {
-                direction = this.turnLeft(direction)
+                direction = this.#turnLeft(direction)
                 continue
             }
 
             if (command === this.#TURN_RIGHT) {
-                direction = this.turnRight(direction);
+                direction = this.#turnRight(direction);
             }
         }
 
         return location.length + ',' + location.side + ',' + direction;
     }
 
-    turnLeft(currentDirection) {
+    #turnLeft(currentDirection) {
         if (currentDirection === this.#NORTH) {
             return this.#WEST
         }
@@ -48,7 +48,7 @@ export class MarsRover {
         }
     }
 
-    turnRight(currentDirection) {
+    #turnRight(currentDirection) {
         if (currentDirection === this.#NORTH) {
             return this.#EAST
         }
@@ -63,7 +63,7 @@ export class MarsRover {
         }
     }
 
-    move(location, direction) {
+    #move(location, direction) {
         if (direction === this.#EAST) {
             return location.right()
         }
