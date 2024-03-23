@@ -67,10 +67,10 @@ export class MarsRover {
         if (direction === this.#EAST) {
             return location.translateOnLength(+1)
         }
-
         if (direction === this.#SOUTH) {
             return location.translateOnSide(-1)
-        } else {
+        }
+        if (direction === this.#NORTH) {
             return location.translateOnSide(+1)
         }
     }
