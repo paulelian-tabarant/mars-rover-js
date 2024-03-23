@@ -73,5 +73,8 @@ export class MarsRover {
         if (direction === this.#NORTH) {
             return location.up()
         }
+        if (direction === this.#WEST) {
+            return location.left()
+        }
     }
 }
