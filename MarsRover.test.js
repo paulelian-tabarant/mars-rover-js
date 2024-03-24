@@ -51,7 +51,7 @@ describe('Mars Rover', () => {
 		{commands: 'RM', 	expectedPosition: '1,0'},
 		{commands: 'RMLLM', expectedPosition: '0,0'},
 	],
-	)('considers current orientation when moving forward', ({commands, expectedPosition: expectedPosition}) => {
+	)('considers current orientation when moving forward', ({commands, expectedPosition}) => {
 		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
 			const coordinates = rover.receive(commands)
 
