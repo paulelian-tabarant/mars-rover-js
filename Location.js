@@ -17,7 +17,7 @@ export class Location {
 
 	down() {
 		if (this.#side === 0) {
-			this.#side = 10
+			this.#side = 9
 			return
 		}
 		this.#side--
@@ -29,7 +29,7 @@ export class Location {
 
 	left() {
 		if (this.#length === 0) {
-			this.#length = 10
+			this.#length = 9
 			return
 		}
 		this.#length--
