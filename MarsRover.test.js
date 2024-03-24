@@ -49,7 +49,7 @@ describe('Mars Rover', () => {
 		{commands: 'M', 	expectedPosition: '0,1'},
 		{commands: 'MRRM', 	expectedPosition: '0,0'},
 		{commands: 'RM', 	expectedPosition: '1,0'},
-		{commands: 'RMLLM', expectedPosition: '0,0'},
+		{commands: 'RMLLM',	expectedPosition: '0,0'},
 	],
 	)('considers current orientation when moving forward', ({commands, expectedPosition}) => {
 		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
@@ -61,7 +61,7 @@ describe('Mars Rover', () => {
 
 	describe.each([
 		{commands: 'LLM', 						expectedPosition: '0,9'},
-		{commands: 'LM', 						expectedPosition: '9,0'},
+		{commands: 'LM',						expectedPosition: '9,0'},
 		{commands: 'M'.repeat(10), 		expectedPosition: '0,0'},
 		{commands: 'R' + 'M'.repeat(10), 	expectedPosition: '0,0'},
 	],
