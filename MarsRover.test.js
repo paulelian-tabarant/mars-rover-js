@@ -72,6 +72,10 @@ describe('Mars Rover', () => {
 			expect(positionFrom(coordinates)).toEqual(expectedPosition)
 		})
 	})
+
+	it('Acceptance test', () => {
+		expect(rover.receive('MRMMLMLMMMRM')).toEqual('9,3,N')
+	})
 })
 
 function orientationFrom(coordinates) {
