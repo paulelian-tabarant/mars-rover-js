@@ -1,5 +1,5 @@
 export class Direction {
-	current
+	#current
 
 	static NORTH = 'N'
 	static EAST = 'E'
@@ -7,46 +7,46 @@ export class Direction {
 	static WEST = 'W'
 
 	constructor(initial) {
-		this.current = initial
+		this.#current = initial
 	}
 
 	get() {
-		return this.current
+		return this.#current
 	}
 
 	turnLeft() {
-		if (this.current === Direction.NORTH) {
-			this.current = Direction.WEST
+		if (this.#current === Direction.NORTH) {
+			this.#current = Direction.WEST
 			return
 		}
-		if (this.current === Direction.WEST) {
-			this.current = Direction.SOUTH
+		if (this.#current === Direction.WEST) {
+			this.#current = Direction.SOUTH
 			return
 		}
-		if (this.current === Direction.SOUTH) {
-			this.current = Direction.EAST
+		if (this.#current === Direction.SOUTH) {
+			this.#current = Direction.EAST
 			return
 		}
-		if (this.current === Direction.EAST) {
-			this.current = Direction.NORTH
+		if (this.#current === Direction.EAST) {
+			this.#current = Direction.NORTH
 		}
 	}
 
 	turnRight() {
-		if (this.current === Direction.NORTH) {
-			this.current = Direction.EAST
+		if (this.#current === Direction.NORTH) {
+			this.#current = Direction.EAST
 			return
 		}
-		if (this.current === Direction.EAST) {
-			this.current = Direction.SOUTH
+		if (this.#current === Direction.EAST) {
+			this.#current = Direction.SOUTH
 			return
 		}
-		if (this.current === Direction.SOUTH) {
-			this.current = Direction.WEST
+		if (this.#current === Direction.SOUTH) {
+			this.#current = Direction.WEST
 			return
 		}
-		if (this.current === Direction.WEST) {
-			this.current = Direction.NORTH
+		if (this.#current === Direction.WEST) {
+			this.#current = Direction.NORTH
 		}
 	}
 }
