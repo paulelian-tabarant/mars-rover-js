@@ -6,7 +6,12 @@ function orientationFrom(position) {
 }
 
 function locationFrom(position) {
-	return position.substring(0, 3)
+	let extractedCoordinates = position.slice().split(',')
+
+	// remove direction
+	extractedCoordinates.pop()
+
+	return extractedCoordinates.join(',')
 }
 
 describe('Mars Rover', () => {
@@ -60,6 +65,19 @@ describe('Mars Rover', () => {
 		{commands: 'RMLLM', expectedLocation: '0,0'},
 	],
 	)('considers current direction when moving forward', ({commands, expectedLocation}) => {
+		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
+			const rover = new MarsRover()
+
+			const location = locationFrom(rover.receive(commands))
+
+			expect(location).toEqual(expectedLocation)
+		})
+	})
+
+	describe.each([
+		{commands: 'LLM', expectedLocation: '0,10'},
+	],
+	)('wraps around when reaches the end of the grid', ({commands, expectedLocation}) => {
 		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
 			const rover = new MarsRover()
 

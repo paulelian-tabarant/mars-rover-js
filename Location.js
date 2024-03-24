@@ -16,6 +16,10 @@ export class Location {
 	}
 
 	down() {
+		if (this.#side === 0) {
+			this.#side = 10
+			return
+		}
 		this.#side--
 	}
 
