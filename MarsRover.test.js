@@ -76,6 +76,7 @@ describe('Mars Rover', () => {
 
 	describe.each([
 		{commands: 'LLM', expectedLocation: '0,10'},
+		{commands: 'LM', expectedLocation: '10,0'},
 	],
 	)('wraps around when reaches the end of the grid', ({commands, expectedLocation}) => {
 		it(`is at ${expectedLocation} when receiving ${commands}`, () => {

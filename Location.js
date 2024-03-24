@@ -28,6 +28,10 @@ export class Location {
 	}
 
 	left() {
+		if (this.#length === 0) {
+			this.#length = 10
+			return
+		}
 		this.#length--
 	}
 
