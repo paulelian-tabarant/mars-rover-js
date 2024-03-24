@@ -25,7 +25,7 @@ export class MarsRover {
 			}
 		}
 
-		return location.length + ',' + location.side + ',' + direction.get()
+		return location.getLength() + ',' + location.getSide() + ',' + direction.get()
 	}
 
 	#move(location, direction) {

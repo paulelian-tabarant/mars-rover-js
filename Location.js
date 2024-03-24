@@ -1,25 +1,33 @@
 export class Location {
-	length
-	side
+	#length
+	#side
 
 	constructor(length, side) {
-		this.length = length
-		this.side = side
+		this.#length = length
+		this.#side = side
+	}
+
+	getLength() {
+		return this.#length
+	}
+
+	getSide() {
+		return this.#side
 	}
 
 	down() {
-		this.side--
+		this.#side--
 	}
 
 	up() {
-		this.side++
+		this.#side++
 	}
 
 	left() {
-		this.length--
+		this.#length--
 	}
 
 	right() {
-		this.length = this.length + 1
+		this.#length++
 	}
 }
