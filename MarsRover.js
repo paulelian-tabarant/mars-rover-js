@@ -17,7 +17,7 @@ export class MarsRover {
 
 		for (const command of commands) {
 			if (command === this.#MOVE) {
-				location = this.#move(location, direction)
+				this.#move(location, direction)
 			}
 
 			if (command === this.#TURN_LEFT) {
@@ -65,16 +65,16 @@ export class MarsRover {
 
 	#move(location, direction) {
 		if (direction === this.#EAST) {
-			return location.right()
+			location.right()
 		}
 		if (direction === this.#SOUTH) {
-			return location.down()
+			location.down()
 		}
 		if (direction === this.#NORTH) {
-			return location.up()
+			location.up()
 		}
 		if (direction === this.#WEST) {
-			return location.left()
+			location.left()
 		}
 	}
 }

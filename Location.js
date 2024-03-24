@@ -8,18 +8,18 @@ export class Location {
 	}
 
 	down() {
-		return new Location(this.length, this.side - 1)
+		this.side--
 	}
 
 	up() {
-		return new Location(this.length, this.side + 1)
+		this.side++
 	}
 
 	left() {
-		return new Location(this.length - 1, this.side)
+		this.length--
 	}
 
 	right() {
-		return new Location(this.length + 1, this.side)
+		this.length = this.length + 1
 	}
 }
