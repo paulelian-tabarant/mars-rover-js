@@ -1,5 +1,5 @@
-import {Direction} from './Direction'
-import {Position} from './Position'
+import {Orientation} from './Orientation'
+import {Coordinates} from './Coordinates'
 
 export class MarsRover {
 	#TURN_RIGHT = 'R'
@@ -7,24 +7,24 @@ export class MarsRover {
 	#MOVE = 'M'
 
 	receive(commands) {
-		const position = new Position(0, 0, Direction.NORTH)
+		const coordinates = new Coordinates(0, 0, Orientation.NORTH)
 
 		for (const command of commands) {
 			if (command === this.#MOVE) {
-				position.move()
+				coordinates.move()
 			}
 
 			if (command === this.#TURN_LEFT) {
-				position.turnLeft()
+				coordinates.turnLeft()
 			}
 
 			if (command === this.#TURN_RIGHT) {
-				position.turnRight()
+				coordinates.turnRight()
 			}
 		}
 
-		const finalPosition = position.get()
+		const finalCoordinates = coordinates.get()
 
-		return finalPosition.length + ',' + finalPosition.side + ',' + finalPosition.direction
+		return finalCoordinates.length + ',' + finalCoordinates.side + ',' + finalCoordinates.direction
 	}
 }

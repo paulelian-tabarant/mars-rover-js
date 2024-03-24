@@ -1,43 +1,49 @@
-import {Direction} from './Direction'
-import {Location} from './Location'
-
 export class Position {
-	location
-	direction
+	#length
+	#side
 
-	constructor(length, side, direction) {
-		this.location = new Location(length, side)
-		this.direction = new Direction(direction)
+	constructor(length, side) {
+		this.#length = length
+		this.#side = side
 	}
 
-	get() {
-		return {
-			length: this.location.getLength(),
-			side: this.location.getSide(),
-			direction: this.direction.get()
-		}
+	getLength() {
+		return this.#length
 	}
 
-	move() {
-		if (this.direction.get() === Direction.EAST) {
-			this.location.right()
-		}
-		if (this.direction.get() === Direction.SOUTH) {
-			this.location.down()
-		}
-		if (this.direction.get() === Direction.NORTH) {
-			this.location.up()
-		}
-		if (this.direction.get() === Direction.WEST) {
-			this.location.left()
-		}
+	getSide() {
+		return this.#side
 	}
 
-	turnLeft() {
-		this.direction.turnLeft()
+	down() {
+		if (this.#side === 0) {
+			this.#side = 9
+			return
+		}
+		this.#side--
 	}
 
-	turnRight() {
-		this.direction.turnRight()
+	up() {
+		if (this.#side === 9) {
+			this.#side = 0
+			return
+		}
+		this.#side++
+	}
+
+	left() {
+		if (this.#length === 0) {
+			this.#length = 9
+			return
+		}
+		this.#length--
+	}
+
+	right() {
+		if (this.#length === 9) {
+			this.#length = 0
+			return
+		}
+		this.#length++
 	}
 }

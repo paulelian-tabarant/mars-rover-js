@@ -32,60 +32,60 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'MMM', 	expectedLocation: '0,3'},
-		{commands: 'RMMM', 	expectedLocation: '3,0'},
+		{commands: 'MMM', 	expectedPosition: '0,3'},
+		{commands: 'RMMM', 	expectedPosition: '3,0'},
 	],
-	)('remembers the last location when moving forward several times', ({commands, expectedLocation}) => {
-		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
+	)('remembers the last position when moving forward several times', ({commands, expectedPosition}) => {
+		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
 			const rover = new MarsRover()
 
-			const location = locationFrom(rover.receive(commands))
+			const position = positionFrom(rover.receive(commands))
 
-			expect(location).toEqual(expectedLocation)
+			expect(position).toEqual(expectedPosition)
 		})
 	})
 
 	describe.each([
-		{commands: 'M', 	expectedLocation: '0,1'},
-		{commands: 'MRRM', 	expectedLocation: '0,0'},
-		{commands: 'RM', 	expectedLocation: '1,0'},
-		{commands: 'RMLLM', expectedLocation: '0,0'},
+		{commands: 'M', 	expectedPosition: '0,1'},
+		{commands: 'MRRM', 	expectedPosition: '0,0'},
+		{commands: 'RM', 	expectedPosition: '1,0'},
+		{commands: 'RMLLM', expectedPosition: '0,0'},
 	],
-	)('considers current direction when moving forward', ({commands, expectedLocation}) => {
-		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
+	)('considers current orientation when moving forward', ({commands, expectedPosition: expectedPosition}) => {
+		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
 			const rover = new MarsRover()
 
-			const location = locationFrom(rover.receive(commands))
+			const position = positionFrom(rover.receive(commands))
 
-			expect(location).toEqual(expectedLocation)
+			expect(position).toEqual(expectedPosition)
 		})
 	})
 
 	describe.each([
-		{commands: 'LLM', 						expectedLocation: '0,9'},
-		{commands: 'LM', 						expectedLocation: '9,0'},
-		{commands: 'M'.repeat(10), 		expectedLocation: '0,0'},
-		{commands: 'R' + 'M'.repeat(10), 	expectedLocation: '0,0'},
+		{commands: 'LLM', 						expectedPosition: '0,9'},
+		{commands: 'LM', 						expectedPosition: '9,0'},
+		{commands: 'M'.repeat(10), 		expectedPosition: '0,0'},
+		{commands: 'R' + 'M'.repeat(10), 	expectedPosition: '0,0'},
 	],
-	)('wraps around when reaches one end of the (10, 10) grid', ({commands, expectedLocation}) => {
-		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
+	)('wraps around when reaches one end of the (10, 10) grid', ({commands, expectedPosition}) => {
+		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
 			const rover = new MarsRover()
 
-			const location = locationFrom(rover.receive(commands))
+			const position = positionFrom(rover.receive(commands))
 
-			expect(location).toEqual(expectedLocation)
+			expect(position).toEqual(expectedPosition)
 		})
 	})
 })
 
-function orientationFrom(position) {
-	return position.charAt(position.length - 1)
+function orientationFrom(coordinates) {
+	return coordinates.charAt(coordinates.length - 1)
 }
 
-function locationFrom(position) {
-	let extractedCoordinates = position.slice().split(',')
+function positionFrom(coordinates) {
+	let extractedCoordinates = coordinates.slice().split(',')
 
-	// remove direction
+	// remove orientation
 	extractedCoordinates.pop()
 
 	return extractedCoordinates.join(',')
