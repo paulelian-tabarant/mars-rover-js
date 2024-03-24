@@ -10,17 +10,17 @@ class Direction {
 }
 
 export class MarsRover {
-	#NORTH = 'N'
-	#EAST = 'E'
-	#SOUTH = 'S'
-	#WEST = 'W'
+	static NORTH = 'N'
+	static EAST = 'E'
+	static SOUTH = 'S'
+	static WEST = 'W'
 
 	#TURN_RIGHT = 'R'
 	#TURN_LEFT = 'L'
 	#MOVE = 'M'
 
 	receive(commands) {
-		let direction = new Direction(this.#NORTH)
+		let direction = new Direction(MarsRover.NORTH)
 
 		let location = new Location(0, 0)
 
@@ -43,46 +43,46 @@ export class MarsRover {
 	}
 
 	#turnLeft(direction) {
-		if (direction.current === this.#NORTH) {
-			return this.#WEST
+		if (direction.current === MarsRover.NORTH) {
+			return MarsRover.WEST
 		}
-		if (direction.current === this.#WEST) {
-			return this.#SOUTH
+		if (direction.current === MarsRover.WEST) {
+			return MarsRover.SOUTH
 		}
-		if (direction.current === this.#SOUTH) {
-			return this.#EAST
+		if (direction.current === MarsRover.SOUTH) {
+			return MarsRover.EAST
 		}
-		if (direction.current === this.#EAST) {
-			return this.#NORTH
+		if (direction.current === MarsRover.EAST) {
+			return MarsRover.NORTH
 		}
 	}
 
 	#turnRight(direction) {
-		if (direction.current === this.#NORTH) {
-			return this.#EAST
+		if (direction.current === MarsRover.NORTH) {
+			return MarsRover.EAST
 		}
-		if (direction.current === this.#EAST) {
-			return this.#SOUTH
+		if (direction.current === MarsRover.EAST) {
+			return MarsRover.SOUTH
 		}
-		if (direction.current === this.#SOUTH) {
-			return this.#WEST
+		if (direction.current === MarsRover.SOUTH) {
+			return MarsRover.WEST
 		}
-		if (direction.current === this.#WEST) {
-			return this.#NORTH
+		if (direction.current === MarsRover.WEST) {
+			return MarsRover.NORTH
 		}
 	}
 
 	#move(location, direction) {
-		if (direction.current === this.#EAST) {
+		if (direction.current === MarsRover.EAST) {
 			location.right()
 		}
-		if (direction.current === this.#SOUTH) {
+		if (direction.current === MarsRover.SOUTH) {
 			location.down()
 		}
-		if (direction.current === this.#NORTH) {
+		if (direction.current === MarsRover.NORTH) {
 			location.up()
 		}
-		if (direction.current === this.#WEST) {
+		if (direction.current === MarsRover.WEST) {
 			location.left()
 		}
 	}
