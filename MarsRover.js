@@ -1,5 +1,14 @@
 import {Location} from './Location'
 
+class Direction {
+	current
+
+	constructor(initial) {
+		this.current = initial
+	}
+
+}
+
 export class MarsRover {
 	#NORTH = 'N'
 	#EAST = 'E'
@@ -11,7 +20,7 @@ export class MarsRover {
 	#MOVE = 'M'
 
 	receive(commands) {
-		let direction = this.#NORTH
+		let direction = new Direction(this.#NORTH)
 
 		let location = new Location(0, 0)
 
@@ -21,59 +30,59 @@ export class MarsRover {
 			}
 
 			if (command === this.#TURN_LEFT) {
-				direction = this.#turnLeft(direction)
+				direction.current = this.#turnLeft(direction)
 				continue
 			}
 
 			if (command === this.#TURN_RIGHT) {
-				direction = this.#turnRight(direction)
+				direction.current = this.#turnRight(direction)
 			}
 		}
 
-		return location.length + ',' + location.side + ',' + direction
+		return location.length + ',' + location.side + ',' + direction.current
 	}
 
-	#turnLeft(currentDirection) {
-		if (currentDirection === this.#NORTH) {
+	#turnLeft(direction) {
+		if (direction.current === this.#NORTH) {
 			return this.#WEST
 		}
-		if (currentDirection === this.#WEST) {
+		if (direction.current === this.#WEST) {
 			return this.#SOUTH
 		}
-		if (currentDirection === this.#SOUTH) {
+		if (direction.current === this.#SOUTH) {
 			return this.#EAST
 		}
-		if (currentDirection === this.#EAST) {
+		if (direction.current === this.#EAST) {
 			return this.#NORTH
 		}
 	}
 
-	#turnRight(currentDirection) {
-		if (currentDirection === this.#NORTH) {
+	#turnRight(direction) {
+		if (direction.current === this.#NORTH) {
 			return this.#EAST
 		}
-		if (currentDirection === this.#EAST) {
+		if (direction.current === this.#EAST) {
 			return this.#SOUTH
 		}
-		if (currentDirection === this.#SOUTH) {
+		if (direction.current === this.#SOUTH) {
 			return this.#WEST
 		}
-		if (currentDirection === this.#WEST) {
+		if (direction.current === this.#WEST) {
 			return this.#NORTH
 		}
 	}
 
 	#move(location, direction) {
-		if (direction === this.#EAST) {
+		if (direction.current === this.#EAST) {
 			location.right()
 		}
-		if (direction === this.#SOUTH) {
+		if (direction.current === this.#SOUTH) {
 			location.down()
 		}
-		if (direction === this.#NORTH) {
+		if (direction.current === this.#NORTH) {
 			location.up()
 		}
-		if (direction === this.#WEST) {
+		if (direction.current === this.#WEST) {
 			location.left()
 		}
 	}
