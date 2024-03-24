@@ -18,34 +18,23 @@ export class Position {
 	}
 
 	down() {
-		if (this.#side === 0) {
-			this.#side = Position.GRID_SIZE - 1
-			return
-		}
-		this.#side--
+		this.#side = this.#wrapAroundGrid(this.#side - 1)
 	}
 
 	up() {
-		if (this.#side === Position.GRID_SIZE - 1) {
-			this.#side = 0
-			return
-		}
-		this.#side++
+		this.#side = this.#wrapAroundGrid(this.#side + 1)
 	}
 
 	left() {
-		if (this.#length === 0) {
-			this.#length = Position.GRID_SIZE - 1
-			return
-		}
-		this.#length--
+		this.#length = this.#wrapAroundGrid(this.#length - 1)
 	}
 
 	right() {
-		if (this.#length === Position.GRID_SIZE - 1) {
-			this.#length = 0
-			return
-		}
-		this.#length++
+		this.#length = this.#wrapAroundGrid(this.#length + 1)
+	}
+
+	#wrapAroundGrid(value) {
+		const size = Position.GRID_SIZE
+		return ((value % size) + size) % size
 	}
 }
