@@ -24,6 +24,10 @@ export class Location {
 	}
 
 	up() {
+		if (this.#side === 9) {
+			this.#side = 0
+			return
+		}
 		this.#side++
 	}
 
@@ -36,6 +40,10 @@ export class Location {
 	}
 
 	right() {
+		if (this.#length === 9) {
+			this.#length = 0
+			return
+		}
 		this.#length++
 	}
 }

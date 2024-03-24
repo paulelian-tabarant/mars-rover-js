@@ -1,19 +1,6 @@
 import {describe, expect, it} from 'vitest'
 import {MarsRover} from './MarsRover'
 
-function orientationFrom(position) {
-	return position.charAt(position.length - 1)
-}
-
-function locationFrom(position) {
-	let extractedCoordinates = position.slice().split(',')
-
-	// remove direction
-	extractedCoordinates.pop()
-
-	return extractedCoordinates.join(',')
-}
-
 describe('Mars Rover', () => {
 	it('is at 0,0,N by default', () => {
 		const NO_MOVE = ''
@@ -75,9 +62,10 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'LLM', 					expectedLocation: '0,9'},
-		{commands: 'LM', 					expectedLocation: '9,0'},
-		{commands: 'M'.repeat(10), 	expectedLocation: '0,0'},
+		{commands: 'LLM', 						expectedLocation: '0,9'},
+		{commands: 'LM', 						expectedLocation: '9,0'},
+		{commands: 'M'.repeat(10), 		expectedLocation: '0,0'},
+		{commands: 'R' + 'M'.repeat(10), 	expectedLocation: '0,0'},
 	],
 	)('wraps around when reaches one end of the (10, 10) grid', ({commands, expectedLocation}) => {
 		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
@@ -89,3 +77,16 @@ describe('Mars Rover', () => {
 		})
 	})
 })
+
+function orientationFrom(position) {
+	return position.charAt(position.length - 1)
+}
+
+function locationFrom(position) {
+	let extractedCoordinates = position.slice().split(',')
+
+	// remove direction
+	extractedCoordinates.pop()
+
+	return extractedCoordinates.join(',')
+}
