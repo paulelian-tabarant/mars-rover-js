@@ -1,12 +1,13 @@
-import {Direction} from "./Direction";
+import {Direction} from './Direction'
+import {Location} from './Location'
 
 export class Position {
-	direction
 	location
+	direction
 
-	constructor(location, direction) {
-		this.direction = direction
-		this.location = location
+	constructor(length, side, direction) {
+		this.location = new Location(length, side)
+		this.direction = new Direction(direction)
 	}
 
 	get() {
