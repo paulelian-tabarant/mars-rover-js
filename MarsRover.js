@@ -1,6 +1,24 @@
 import {Location} from './Location'
 import {Direction} from './Direction'
 
+class Position {
+	direction
+	location
+
+	constructor(direction, location) {
+		this.direction = direction
+		this.location = location
+	}
+
+	get() {
+		return {
+			length: this.location.getLength(),
+			side: this.location.getSide(),
+			direction: this.direction.get()
+		}
+	}
+}
+
 export class MarsRover {
 	#TURN_RIGHT = 'R'
 	#TURN_LEFT = 'L'
@@ -25,7 +43,10 @@ export class MarsRover {
 			}
 		}
 
-		return location.getLength() + ',' + location.getSide() + ',' + direction.get()
+		const position = new Position(direction, location)
+		const positionDTO = position.get()
+
+		return positionDTO.length + ',' + positionDTO.side + ',' + positionDTO.direction
 	}
 
 	#move(location, direction) {
