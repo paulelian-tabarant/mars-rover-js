@@ -29,6 +29,24 @@ class Direction {
 			this.current = Direction.NORTH
 		}
 	}
+
+	turnRight() {
+		if (this.current === Direction.NORTH) {
+			this.current = Direction.EAST
+			return
+		}
+		if (this.current === Direction.EAST) {
+			this.current = Direction.SOUTH
+			return
+		}
+		if (this.current === Direction.SOUTH) {
+			this.current = Direction.WEST
+			return
+		}
+		if (this.current === Direction.WEST) {
+			this.current = Direction.NORTH
+		}
+	}
 }
 
 export class MarsRover {
@@ -52,25 +70,11 @@ export class MarsRover {
 			}
 
 			if (command === this.#TURN_RIGHT) {
-				direction.current = this.#turnRight(direction)
+				direction.turnRight()
 			}
 		}
 
 		return location.length + ',' + location.side + ',' + direction.current
-	}
-	#turnRight(direction) {
-		if (direction.current === Direction.NORTH) {
-			return Direction.EAST
-		}
-		if (direction.current === Direction.EAST) {
-			return Direction.SOUTH
-		}
-		if (direction.current === Direction.SOUTH) {
-			return Direction.WEST
-		}
-		if (direction.current === Direction.WEST) {
-			return Direction.NORTH
-		}
 	}
 
 	#move(location, direction) {
