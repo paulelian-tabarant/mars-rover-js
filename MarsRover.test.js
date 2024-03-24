@@ -60,7 +60,7 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'LLM', 						expectedPosition: '0,9'},
+		{commands: 'LLM',						expectedPosition: '0,9'},
 		{commands: 'LM',						expectedPosition: '9,0'},
 		{commands: 'M'.repeat(10), 		expectedPosition: '0,0'},
 		{commands: 'R' + 'M'.repeat(10), 	expectedPosition: '0,0'},
