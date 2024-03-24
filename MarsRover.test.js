@@ -24,14 +24,14 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'R', expectedOrientation: 'E'},
-		{commands: 'RR', expectedOrientation: 'S'},
-		{commands: 'RRR', expectedOrientation: 'W'},
-		{commands: 'RRRR', expectedOrientation: 'N'},
-		{commands: 'L', expectedOrientation: 'W'},
-		{commands: 'LL', expectedOrientation: 'S'},
-		{commands: 'LLL', expectedOrientation: 'E'},
-		{commands: 'LLLL', expectedOrientation: 'N'},
+		{commands: 'R', 	expectedOrientation: 'E'},
+		{commands: 'RR', 	expectedOrientation: 'S'},
+		{commands: 'RRR', 	expectedOrientation: 'W'},
+		{commands: 'RRRR', 	expectedOrientation: 'N'},
+		{commands: 'L', 	expectedOrientation: 'W'},
+		{commands: 'LL', 	expectedOrientation: 'S'},
+		{commands: 'LLL', 	expectedOrientation: 'E'},
+		{commands: 'LLLL', 	expectedOrientation: 'N'},
 	],
 	)('turns correctly left and right', ({commands, expectedOrientation}) => {
 
@@ -45,8 +45,8 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'MMM', expectedLocation: '0,3'},
-		{commands: 'RMMM', expectedLocation: '3,0'},
+		{commands: 'MMM', 	expectedLocation: '0,3'},
+		{commands: 'RMMM', 	expectedLocation: '3,0'},
 	],
 	)('remembers the last location when moving forward several times', ({commands, expectedLocation}) => {
 		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
@@ -59,9 +59,9 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'M', expectedLocation: '0,1'},
-		{commands: 'MRRM', expectedLocation: '0,0'},
-		{commands: 'RM', expectedLocation: '1,0'},
+		{commands: 'M', 	expectedLocation: '0,1'},
+		{commands: 'MRRM', 	expectedLocation: '0,0'},
+		{commands: 'RM', 	expectedLocation: '1,0'},
 		{commands: 'RMLLM', expectedLocation: '0,0'},
 	],
 	)('considers current direction when moving forward', ({commands, expectedLocation}) => {
@@ -75,9 +75,9 @@ describe('Mars Rover', () => {
 	})
 
 	describe.each([
-		{commands: 'LLM', expectedLocation: '0,9'},
-		{commands: 'LM', expectedLocation: '9,0'},
-		{commands: 'M'.repeat(10), expectedLocation: '0,0'},
+		{commands: 'LLM', 					expectedLocation: '0,9'},
+		{commands: 'LM', 					expectedLocation: '9,0'},
+		{commands: 'M'.repeat(10), 	expectedLocation: '0,0'},
 	],
 	)('wraps around when reaches one end of the (10, 10) grid', ({commands, expectedLocation}) => {
 		it(`is at ${expectedLocation} when receiving ${commands}`, () => {
