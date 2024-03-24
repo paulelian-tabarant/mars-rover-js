@@ -5,7 +5,7 @@ class Position {
 	direction
 	location
 
-	constructor(direction, location) {
+	constructor(location, direction) {
 		this.direction = direction
 		this.location = location
 	}
@@ -15,6 +15,21 @@ class Position {
 			length: this.location.getLength(),
 			side: this.location.getSide(),
 			direction: this.direction.get()
+		}
+	}
+
+	move() {
+		if (this.direction.get() === Direction.EAST) {
+			this.location.right()
+		}
+		if (this.direction.get() === Direction.SOUTH) {
+			this.location.down()
+		}
+		if (this.direction.get() === Direction.NORTH) {
+			this.location.up()
+		}
+		if (this.direction.get() === Direction.WEST) {
+			this.location.left()
 		}
 	}
 }
@@ -28,9 +43,12 @@ export class MarsRover {
 		let direction = new Direction(Direction.NORTH)
 		let location = new Location(0, 0)
 
+		const targetPosition = new Position(location, direction)
+
 		for (const command of commands) {
 			if (command === this.#MOVE) {
-				this.#move(location, direction)
+				targetPosition.move()
+				//this.#move(location, direction)
 			}
 
 			if (command === this.#TURN_LEFT) {
@@ -43,10 +61,11 @@ export class MarsRover {
 			}
 		}
 
-		const position = new Position(direction, location)
+		const position = new Position(location, direction)
 		const positionDTO = position.get()
+		const targetPositionDTO = targetPosition.get()
 
-		return positionDTO.length + ',' + positionDTO.side + ',' + positionDTO.direction
+		return targetPositionDTO.length + ',' + targetPositionDTO.side + ',' + positionDTO.direction
 	}
 
 	#move(location, direction) {
