@@ -12,14 +12,26 @@ class Direction {
 		this.current = initial
 	}
 
+	turnLeft() {
+		if (this.current === Direction.NORTH) {
+			this.current = Direction.WEST
+			return
+		}
+		if (this.current === Direction.WEST) {
+			this.current = Direction.SOUTH
+			return
+		}
+		if (this.current === Direction.SOUTH) {
+			this.current = Direction.EAST
+			return
+		}
+		if (this.current === Direction.EAST) {
+			this.current = Direction.NORTH
+		}
+	}
 }
 
 export class MarsRover {
-	static NORTH = 'N'
-	static EAST = 'E'
-	static SOUTH = 'S'
-	static WEST = 'W'
-
 	#TURN_RIGHT = 'R'
 	#TURN_LEFT = 'L'
 	#MOVE = 'M'
@@ -35,7 +47,8 @@ export class MarsRover {
 			}
 
 			if (command === this.#TURN_LEFT) {
-				direction.current = this.#turnLeft(direction)
+				//direction.current = this.#turnLeft(direction)
+				direction.turnLeft()
 				continue
 			}
 
