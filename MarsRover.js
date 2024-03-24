@@ -47,7 +47,6 @@ export class MarsRover {
 			}
 
 			if (command === this.#TURN_LEFT) {
-				//direction.current = this.#turnLeft(direction)
 				direction.turnLeft()
 				continue
 			}
@@ -59,22 +58,6 @@ export class MarsRover {
 
 		return location.length + ',' + location.side + ',' + direction.current
 	}
-
-	#turnLeft(direction) {
-		if (direction.current === Direction.NORTH) {
-			return Direction.WEST
-		}
-		if (direction.current === Direction.WEST) {
-			return Direction.SOUTH
-		}
-		if (direction.current === Direction.SOUTH) {
-			return Direction.EAST
-		}
-		if (direction.current === Direction.EAST) {
-			return Direction.NORTH
-		}
-	}
-
 	#turnRight(direction) {
 		if (direction.current === Direction.NORTH) {
 			return Direction.EAST
