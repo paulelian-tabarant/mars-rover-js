@@ -1,11 +1,15 @@
-import {describe, expect, it} from 'vitest'
+import {beforeEach, describe, expect, it} from 'vitest'
 import {MarsRover} from './MarsRover'
 
 describe('Mars Rover', () => {
+	let rover
+
+	beforeEach(() => {
+		rover = new MarsRover()
+	})
+
 	it('is at 0,0,N by default', () => {
 		const NO_MOVE = ''
-
-		const rover = new MarsRover()
 
 		expect(rover.receive(NO_MOVE)).toEqual('0,0,N')
 	})
@@ -23,11 +27,9 @@ describe('Mars Rover', () => {
 	)('turns correctly left and right', ({commands, expectedOrientation}) => {
 
 		it(`faces ${expectedOrientation} when receiving ${commands}`, () => {
-			const rover = new MarsRover()
+			const coordinates = rover.receive(commands)
 
-			const orientation = orientationFrom(rover.receive(commands))
-
-			expect(orientation).toEqual(expectedOrientation)
+			expect(orientationFrom(coordinates)).toEqual(expectedOrientation)
 		})
 	})
 
@@ -37,11 +39,9 @@ describe('Mars Rover', () => {
 	],
 	)('remembers the last position when moving forward several times', ({commands, expectedPosition}) => {
 		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
-			const rover = new MarsRover()
+			const coordinates = rover.receive(commands)
 
-			const position = positionFrom(rover.receive(commands))
-
-			expect(position).toEqual(expectedPosition)
+			expect(positionFrom(coordinates)).toEqual(expectedPosition)
 		})
 	})
 
@@ -53,11 +53,9 @@ describe('Mars Rover', () => {
 	],
 	)('considers current orientation when moving forward', ({commands, expectedPosition: expectedPosition}) => {
 		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
-			const rover = new MarsRover()
+			const coordinates = rover.receive(commands)
 
-			const position = positionFrom(rover.receive(commands))
-
-			expect(position).toEqual(expectedPosition)
+			expect(positionFrom(coordinates)).toEqual(expectedPosition)
 		})
 	})
 
@@ -69,11 +67,9 @@ describe('Mars Rover', () => {
 	],
 	)('wraps around when reaches one end of the (10, 10) grid', ({commands, expectedPosition}) => {
 		it(`is at ${expectedPosition} when receiving ${commands}`, () => {
-			const rover = new MarsRover()
+			const coordinates = rover.receive(commands)
 
-			const position = positionFrom(rover.receive(commands))
-
-			expect(position).toEqual(expectedPosition)
+			expect(positionFrom(coordinates)).toEqual(expectedPosition)
 		})
 	})
 })
@@ -83,10 +79,10 @@ function orientationFrom(coordinates) {
 }
 
 function positionFrom(coordinates) {
-	let extractedCoordinates = coordinates.slice().split(',')
+	let splitCoordinates = coordinates.slice().split(',')
 
 	// remove orientation
-	extractedCoordinates.pop()
+	splitCoordinates.pop()
 
-	return extractedCoordinates.join(',')
+	return splitCoordinates.join(',')
 }
